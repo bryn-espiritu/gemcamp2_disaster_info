@@ -1,14 +1,15 @@
 <h1>Disaster Information Lists</h1>
 
-<table class="table text-center">
-  <thead>
+<table class="table text-center table-striped">
+  <thead class="table-dark">
   <tr>
   <td>Title</td>
   <td>Content</td>
   <td>Address</td>
   <td>Disaster Type</td>
   <td colspan="3">Action</td>
-  <td colspan="2">Comments</td>
+  <td colspan="3">Comments</td>
+    <td>User</td>
   </tr>
   </thead>
   <% @posts.each do |post| %>
@@ -21,7 +22,9 @@
     <td><%= button_to 'Delete', post_path(post), method: :delete %></td>
     <td><%= link_to 'Show', post_path(post) %></td>
     <td><%= link_to "Comments", post_comments_path(post) %></td>
-    <td> <%= link_to "New Comment", new_post_comment_path(post) %></td>
+    <td><%= post.comments_count %></td>
+    <td><%= link_to "New Comment", new_post_comment_path(post) %></td>
+    <td><%= post.user.email %></td>
   </tr>
   <% end %>
 </table>
