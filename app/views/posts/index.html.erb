@@ -18,12 +18,12 @@
     <td><%= post.content %></td>
     <td><%= post.address %></td>
     <td><%= post.categories.pluck(:name).join(',') %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= button_to 'Delete', post_path(post), method: :delete %></td>
-    <td><%= link_to 'Show', post_path(post) %></td>
-    <td><%= link_to "Comments", post_comments_path(post) %></td>
+    <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-warning" %></td>
+    <td><%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-danger" %></td>
+    <td><%= link_to 'Show', post_path(post), class: "btn btn-info" %></td>
+    <td><%= link_to "Comments", post_comments_path(post), class: "btn btn-success" %></td>
     <td><%= post.comments_count %></td>
-    <td><%= link_to "New Comment", new_post_comment_path(post) %></td>
+    <td><%= link_to "New Comment", new_post_comment_path(post), class: "btn btn-success" %></td>
     <td><%= post.user.email %></td>
   </tr>
   <% end %>
