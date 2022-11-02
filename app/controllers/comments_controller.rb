@@ -18,6 +18,18 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+    ;
+  end
+
+  def update
+    if @comment.update(comment_params)
+      redirect_to post_comments_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def set_post
