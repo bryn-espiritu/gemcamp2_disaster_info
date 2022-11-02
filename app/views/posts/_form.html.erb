@@ -22,6 +22,10 @@
         <%= f.label :address %>
         <%= f.text_field :address %>
       </div>
+      <div>
+        <label for="name">Disaster Type</label>
+        <%= f.collection_select :category_ids, Category.all, :id, :name, include_blank: true %>
+      </div>
       <%= f.submit %>
     </div>
   </div>
