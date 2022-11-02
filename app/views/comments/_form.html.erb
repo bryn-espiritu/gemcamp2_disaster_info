@@ -1,5 +1,5 @@
 <div>
-  <%= form_with model: @comment, url: post_comments_path(@post), data: {turbo: false} do |f| %>
+  <%= form_with model: @comment, url: path, data: {turbo: false} do |f| %>
     <div>
       <% if @comment.errors.any? %>
         <div>
