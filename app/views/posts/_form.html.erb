@@ -24,7 +24,8 @@
       </div>
       <div>
         <label for="name">Disaster Type</label>
-        <%= f.collection_select :category_ids, Category.all, :id, :name, include_blank: true %>
+        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+        <%#= f.collection_select :category_ids, Category.all, :id, :name, include_blank: true %>
       </div>
       <%= f.submit %>
     </div>
