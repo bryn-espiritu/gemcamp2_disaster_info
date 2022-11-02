@@ -1,0 +1,12 @@
+  <h1>Comments Section</h1>
+<h3>Title: <%= @post.title %></h3>
+
+  <div>
+    <% @comments.each do |comment| %>
+      <%= comment.contend %>
+     <br>
+      <%= comment.created_at %>
+    <% end %>
+  </div>
+
+  <%= link_to "Index", posts_path %>
