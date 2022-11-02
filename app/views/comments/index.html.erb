@@ -6,6 +6,9 @@
       <%= comment.content %>
      <br>
       <%= comment.created_at %>
+      <br>
+      <%= link_to "edit", edit_post_comment_path(@post, comment) %>
+      <br>
     <% end %>
   </div>
 
