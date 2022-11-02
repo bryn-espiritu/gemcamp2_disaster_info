@@ -1,0 +1,28 @@
+
+<div>
+  <% if @post.errors.any? %>
+    <% @post.errors.each do |error| %>
+      <h3 style="color: #c11111"><%= error.full_message %> </h3>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form_with model: @post do |f| %>
+  <div>
+    <div>
+      <div>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </div>
+      <div>
+        <%= f.label :content %>
+        <%= f.text_field :content %>
+      </div>
+      <div>
+        <%= f.label :address %>
+        <%= f.text_field :address %>
+      </div>
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>
