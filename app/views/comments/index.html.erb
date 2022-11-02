@@ -8,6 +8,7 @@
       <%= comment.created_at %>
       <br>
       <%= link_to "edit", edit_post_comment_path(@post, comment) %>
+      <%= button_to "delete", post_comment_path(@post, comment), method: :delete %>
       <br>
     <% end %>
   </div>
