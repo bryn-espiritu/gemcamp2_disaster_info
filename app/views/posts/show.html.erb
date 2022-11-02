@@ -1,7 +1,7 @@
 <h1>Device Info ID: <%= @post.id %></h1>
-
 <ul>
-  <li><%= post.title %></li>
-  <li><%= post.content %></li>
-  <li><%= post.address %></li>
+  <li><%= @post.title %></li>
+  <li><%= @post.content %></li>
+  <li><%= @post.address %></li>
+    <%= link_to "Edit", edit_post_path(@post) %>
 </ul>
