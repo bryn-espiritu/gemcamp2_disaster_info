@@ -1,0 +1,29 @@
+<h1>Disaster Information Lists</h1>
+
+<table class="table text-center">
+  <thead>
+  <tr>
+  <td>Title</td>
+  <td>Content</td>
+  <td>Address</td>
+  <td colspan="3">Action</td>
+  <td colspan="2">Comments</td>
+  </tr>
+  </thead>
+  <% @posts.each do |post| %>
+  <tr>
+    <td><%= post.title %></td>
+    <td><%= post.content %></td>
+    <td><%= post.address %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= button_to 'Delete', post_path(post), method: :delete %></td>
+    <td><%= link_to 'Show', post_path(post) %></td>
+    <td>New Comment</td>
+    <td> Comments</td>
+  </tr>
+  <% end %>
+</table>
+
+<%= link_to "index", posts_path %>
+<%= link_to 'New', new_post_path %>
+
