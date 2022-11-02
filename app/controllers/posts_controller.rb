@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :validate_post_user, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:user).all
+    @posts = Post.includes(:user, :categories).all
   end
 
   def new
@@ -46,7 +46,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :address)
+    params.require(:post).permit(:title, :content, :address, category_ids: [])
   end
 
   def set_post
