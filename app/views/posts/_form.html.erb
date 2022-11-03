@@ -6,28 +6,28 @@
     <% end %>
   <% end %>
 </div>
-
 <%= form_with model: @post do |f| %>
-  <div>
-    <div>
-      <div>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
+  <div class="container w-25">
+    <div class="form-control">
+      <h2 class="text-center">Form</h2>
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Title</label>
+          <%= f.text_field :title, class: "form-control", id: "exampleFormControlInput1" %>
+        </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Content</label>
+        <%= f.text_field :content, class: "form-control", id: "exampleFormControlInput1" %>
       </div>
-      <div>
-        <%= f.label :content %>
-        <%= f.text_field :content %>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Address</label>
+          <%= f.text_area :address, class: "form-control", id: "exampleFormControlInput1", style: "height: 90px" %>
+        </div>
+        <div>
+          <label for="name">Disaster Type: </label>
+          <div class="m-2"><%= f.collection_check_boxes :category_ids, Category.all, :id, :name %></div>
+          <%#= f.collection_select :category_ids, Category.all, :id, :name, include_blank: true %>
+        <%= f.submit %>
       </div>
-      <div>
-        <%= f.label :address %>
-        <%= f.text_field :address %>
-      </div>
-      <div>
-        <label for="name">Disaster Type</label>
-        <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
-        <%#= f.collection_select :category_ids, Category.all, :id, :name, include_blank: true %>
-      </div>
-      <%= f.submit %>
     </div>
   </div>
 <% end %>
