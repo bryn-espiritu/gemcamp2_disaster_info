@@ -4,7 +4,9 @@ class PostsController < ApplicationController
   before_action :validate_post_user, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:user, :categories).all
+    def index
+      @posts = Post.includes(:user, :categories).order(comments_count: :desc).all
+    end
   end
 
   def new
@@ -39,7 +41,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
+    if @post.comments_count == 1
+      flash[:notice] = "The post with comments can't be deleted."
+    else @post.discard
+    end
     redirect_to posts_path
   end
 
