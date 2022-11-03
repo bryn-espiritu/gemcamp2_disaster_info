@@ -1,29 +1,38 @@
-<h1>Disaster Information List
+<h1 class="mb-5">Disaster Information List
   <span class="badge btn btn-success">
   <%= link_to 'Create New', new_post_path, style: "text-decoration: none; color: white" %>
   </span>
 </h1>
 
-<div class="card">
-  <div class="card-header">
-    Featured
-  </div>
-  <h2>Hot Topics</h2>
-  <% @hot_posts.each do |hot| %>
-  <div class="card-body">
-    <h5 class="card-title"><%= hot.title %></h5>
-    <p class="card-text"><%= hot.content %></p>
-    <%= hot.categories.pluck(:name).join(',') %>
-    <%= hot.comments_count %>
-    <a href="#" class="btn btn-primary">sd</a>
-  <% end %>
-  </div>
+<div class="container">
+  <h2 class="text-center alert alert-danger">Hot Topics</h2>
+    <table class="table table-striped">
+      <thead class="table-light text-center">
+      <tr>
+        <th style="width: 5%">Comment Counts</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th style="width: 30%">Disaster Type</th>
+        <th style="width: 15%"></th>
+      </tr>
+      </thead>
+      <% @hot_posts.each do |hot| %>
+      <tr class="text-center">
+        <td><%= hot.comments_count %></td>
+        <td><%= hot.title %></td>
+        <td><%= hot.content %></td>
+        <td><%= hot.categories.pluck(:name).join(',') %></td>
+        <td><%= link_to "Comments", post_comments_path(hot), class: "btn btn-success" %></td>
+      </tr>
+      <% end %>
+    </table>
+
 </div>
 
-
-<table class="table text-center table-striped">
+<table class="table text-center table-bordered table-striped">
   <thead class="table-dark">
   <tr>
+  <td>ID</td>
   <td>Title</td>
   <td>Content</td>
   <td>Address</td>
@@ -35,6 +44,7 @@
   </thead>
   <% @posts.each do |post| %>
   <tr>
+    <td><%= post.id %></td>
     <td><%= post.title %></td>
     <td><%= post.content %></td>
     <td><%= post.address %></td>
