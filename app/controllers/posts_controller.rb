@@ -5,7 +5,8 @@ class PostsController < ApplicationController
 
   def index
     def index
-      @posts = Post.includes(:user, :categories).order(comments_count: :desc).all
+      @posts = Post.includes(:user, :categories).order(comments_count: :desc).discarded
+      @hot_posts = Post.includes(:user, :categories).order(comments_count: :desc).limit(3)
     end
   end
 
@@ -41,7 +42,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if @post.comments_count == 1
+    if @post.comments_count >= 1
       flash[:notice] = "The post with comments can't be deleted."
     else @post.discard
     end
