@@ -1,4 +1,8 @@
-<h1>Create new Comment</h1>
-<h3><%= @post.title %></h3>
+<div class="container">
+  <div class="form-control mx-auto w-50">
+    <h1>Create new Comment</h1>
 
-<%= render partial: 'form', locals: {post: @post, comment: @comment, path: post_comments_path(@post)} %>
+    <input type="hidden"><%= @post.title %></input>
+    <%= render partial: 'form', locals: { post: @post, comment: @comment, path: post_comments_path(@post) } %>
+  </div>
+</div>
