@@ -5,8 +5,8 @@ class PostsController < ApplicationController
 
   def index
     def index
-      @posts = Post.includes(:user, :categories).order(comments_count: :desc).discarded
-      @hot_posts = Post.includes(:user, :categories).order(comments_count: :desc).limit(3)
+      @posts = Post.includes(:user, :categories).order(comments_count: :desc).kept
+      @hot_tag = Post.order(comments_count: :desc).limit(3).select{ |post| post.comments_count >= 1 }
     end
   end
 
