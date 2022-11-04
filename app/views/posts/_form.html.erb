@@ -24,7 +24,7 @@
         </div>
         <div class="text-center">
           <label for="name">Disaster Type: </label>
-          <div class="m-2"><%= f.collection_check_boxes :category_ids, Category.all, :id, :name %></div>
+          <div class="m-2"><%= f.collection_check_boxes :category_ids, Category.all, :id, :name %> <%= link_to "[+]Other", categories_path, style: "text-decoration: none; color: blue" %></div>
           <%#= f.collection_select :category_ids, Category.all, :id, :name, include_blank: true %>
         <div class="text-center pt-3 mb-3"><%= f.submit "Update", class: "btn btn-success" %></div>
       </div>
