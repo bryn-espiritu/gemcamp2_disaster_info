@@ -4,31 +4,6 @@
   </span>
 </h1>
 
-<div class="container">
-  <h2 class="text-center alert alert-danger">Hot Topics</h2>
-    <table class="table table-striped">
-      <thead class="table-light text-center">
-      <tr>
-        <th style="width: 5%">Comment Counts</th>
-        <th>Title</th>
-        <th>Content</th>
-        <th style="width: 30%">Disaster Type</th>
-        <th style="width: 15%"></th>
-      </tr>
-      </thead>
-      <% @hot_posts.each do |hot| %>
-      <tr class="text-center">
-        <td><%= hot.comments_count %></td>
-        <td><%= hot.title %></td>
-        <td><%= hot.content %></td>
-        <td><%= hot.categories.pluck(:name).join(',') %></td>
-        <td><%= link_to "Comments", post_comments_path(hot), class: "btn btn-success" %></td>
-      </tr>
-      <% end %>
-    </table>
-
-</div>
-
 <table class="table text-center table-bordered table-striped">
   <thead class="table-dark">
   <tr>
@@ -46,13 +21,13 @@
   <tr>
     <td><%= post.id %></td>
     <td><%= post.title %></td>
-    <td><%= post.content %></td>
+    <td><%= post.content.truncate(50) %></td>
     <td><%= post.address %></td>
     <td><%= post.categories.pluck(:name).join(',') %></td>
     <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-warning" %></td>
     <td><%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-danger" %></td>
     <td><%= link_to 'Show', post_path(post), class: "btn btn-info" %></td>
-    <td><%= post.comments_count %></td>
+    <td><%= post.comments_count %> <span><%= image_tag ('hot.png'), width: "30", height: "30" if @hot_tag.include?(post)%></span></td>
     <td><%= link_to "Comments", post_comments_path(post), class: "btn btn-success" %></td>
     <td><%= link_to "New Comment", new_post_comment_path(post), class: "btn btn-success" %></td>
     <td><%= post.user.email %></td>
