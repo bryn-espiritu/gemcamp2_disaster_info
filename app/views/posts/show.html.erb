@@ -1,7 +1,7 @@
-<h1>Device Info ID: <%= @post.id %></h1>
-<ul>
-  <li><%= @post.title %></li>
-  <li><%= @post.content %></li>
-  <li><%= @post.address %></li>
-    <%= link_to "Edit", edit_post_path(@post) %>
-</ul>
+<div class="jumbotron">
+  <h3 class="display-4"><span>ID: <%= @post.id %> </span> <%= @post.title %></h3>
+  <p class="lead"><%= @post.address %><span> | <%= @post.user.email %> </span><span class="lead fw-bold"> <%= link_to "Edit", edit_post_path(@post), style: " text-decoration: none" %></span></p>
+    <div class="container alert alert-warning alert-dismissible fade show" role="alert">
+  <%= @post.content %>
+    </div>
+</div>

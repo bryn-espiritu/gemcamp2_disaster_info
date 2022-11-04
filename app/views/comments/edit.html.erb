@@ -1,10 +1,6 @@
+<h1 class="alert alert-warning w-75"><span style="color: red">Disaster Info <%= @comment.id %>:</span> <%= @post.title %></h1>
+<h3></h3>
 
 <div class="container">
-  <div class="form-control text-center">
-
-<h1>Edit Comment ID: <%= @comment.id %></h1>
-<h3>Title: <%= @post.title %></h3>
-
 <%= render partial: 'form', locals: {post: @post, comment: @comment, path: post_comment_path(@post, @comment)} %>
-  </div>
 </div>

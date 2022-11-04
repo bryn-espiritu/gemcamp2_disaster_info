@@ -1,35 +1,34 @@
 <h1 class="mb-5">Disaster Information List
-  <span class="badge btn btn-success">
+  <span class="badge btn btn-primary">
   <%= link_to 'Create New', new_post_path, style: "text-decoration: none; color: white" %>
   </span>
 </h1>
 
-<table class="table text-center table-bordered table-striped">
+<table class="table text-center table-striped">
   <thead class="table-dark">
   <tr>
-  <td>ID</td>
-  <td>Title</td>
-  <td>Content</td>
-  <td>Address</td>
-  <td>Disaster Type</td>
-  <td colspan="3">Action</td>
-  <td colspan="3">Comments</td>
+  <th>ID</th>
+  <th>Title</th>
+  <th>Content</th>
+  <th>Address</th>
+  <th>Disaster Type</th>
+  <th colspan="3" class="table-bordered">Action</th>
+  <th colspan="2">Comment</th>
     <td>User</td>
   </tr>
   </thead>
   <% @posts.each do |post| %>
   <tr>
     <td><%= post.id %></td>
-    <td><%= post.title %></td>
+    <td class="text-uppercase"><%= post.title %></td>
     <td><%= post.content.truncate(50) %></td>
     <td><%= post.address %></td>
     <td><%= post.categories.pluck(:name).join(',') %></td>
     <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-warning" %></td>
     <td><%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-danger" %></td>
-    <td><%= link_to 'Show', post_path(post), class: "btn btn-info" %></td>
+    <td><%= link_to 'Learn more', post_path(post), class: "btn btn-info" %></td>
     <td><%= post.comments_count %> <span><%= image_tag ('hot.png'), width: "30", height: "30" if @hot_tag.include?(post)%></span></td>
     <td><%= link_to "Comments", post_comments_path(post), class: "btn btn-success" %></td>
-    <td><%= link_to "New Comment", new_post_comment_path(post), class: "btn btn-success" %></td>
     <td><%= post.user.email %></td>
   </tr>
   <% end %>
