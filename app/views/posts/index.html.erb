@@ -11,9 +11,9 @@
   <th>Title</th>
   <th>Content</th>
   <th>Address</th>
-  <th>Disaster Type</th>
-  <th colspan="3" class="table-bordered">Action</th>
-  <th colspan="2">Comment</th>
+  <th style="width: 10%">Disaster Type</th>
+  <th style="width: 15%" colspan="3" class="table-bordered">Action</th>
+  <th style="width: 15%" colspan="2">Comment</th>
     <td>Users</td>
   </tr>
   </thead>
@@ -23,7 +23,7 @@
     <td class="text-uppercase"><%= post.title %></td>
     <td><%= post.content.truncate(50) %></td>
     <td><%= post.address %></td>
-    <td><%= post.categories.pluck(:name).join(',') %></td>
+    <td><%= post.categories.pluck(:name).join(', ') %></td>
     <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-warning" %></td>
     <td><%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-danger" %></td>
     <td><%= link_to 'Learn more', post_path(post), class: "btn btn-info" %></td>
@@ -33,6 +33,10 @@
   </tr>
   <% end %>
 </table>
+
+<%= paginate @posts, theme: 'twitter-bootstrap-4',
+    pagination_class: "pagination-sm",
+    nav_class: "d-inline-b" %>
 
 
 

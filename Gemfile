@@ -34,6 +34,9 @@ gem "devise"
 
 gem 'discard', '~> 1.2'
 
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
