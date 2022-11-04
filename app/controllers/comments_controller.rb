@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.build(comment_params)
     if @comment.save
-      redirect_to post_comments_path(@post)
+      redirect_to post_comments_path(params[:post_id])
     else
       render :new
     end
@@ -47,7 +47,9 @@ class CommentsController < ApplicationController
   end
 
 def comment_params
-  params.require(:comment).permit(:content)
+  params.require(:comment)
+        .permit(:content)
+        .merge(post_id: params[:post_id])
 end
 
 end
