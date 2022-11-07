@@ -14,7 +14,8 @@
   <th style="width: 10%">Disaster Type</th>
   <th style="width: 15%" colspan="3" class="table-bordered">Action</th>
   <th style="width: 15%" colspan="2">Comment</th>
-    <td>Users</td>
+  <th>Data Code</th>
+  <th>Users</th>
   </tr>
   </thead>
   <% @posts.each do |post| %>
@@ -29,6 +30,7 @@
     <td><%= link_to 'Learn more', post_path(post), class: "btn btn-info" %></td>
     <td><%= post.comments_count %> <span><%= image_tag ('hot.png'), width: "30", height: "30" if @hot_tag.include?(post)%></span></td>
     <td><%= link_to "Comments", post_comments_path(post), class: "btn btn-success" %></td>
+    <td><%= post.unique_num %></td>
     <td><%= post.user.email %></td>
   </tr>
   <% end %>

@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @random = rand(-9999)
   end
 
   def create
@@ -52,11 +53,11 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :address, category_ids: [])
+    params.require(:post).permit(:title, :content, :address, :unique_num, category_ids: [])
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
   end
 
   def validate_post_user
