@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_03_054513) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_07_091911) do
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -25,6 +25,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_054513) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "friendly_id_slugs", charset: "utf8mb4", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, length: { slug: 70, scope: 70 }
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", length: { slug: 140 }
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "post_category_ships", charset: "utf8mb4", force: :cascade do |t|
@@ -46,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_054513) do
     t.datetime "delete_at"
     t.integer "comments_count", default: 0
     t.datetime "discarded_at"
+    t.string "unique_num"
     t.index ["discarded_at"], name: "index_posts_on_discarded_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
