@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
     def new
       @post = Post.new
-      @random = rand(-9999)
+      @random = rand(1000..9999)
     end
 
     def create
