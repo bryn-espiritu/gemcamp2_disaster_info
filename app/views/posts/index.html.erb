@@ -6,39 +6,40 @@
 
 <table class="table text-center table-striped">
   <thead class="table-dark">
-  <tr>
-  <th>ID</th>
-  <th>Title</th>
-  <th>Content</th>
-  <th>Address</th>
-  <th style="width: 10%">Disaster Type</th>
-  <th style="width: 15%" colspan="3" class="table-bordered">Action</th>
-  <th style="width: 15%" colspan="2">Comment</th>
-  <th>Data Code</th>
-  <th>Users</th>
-  </tr>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Address</th>
+      <th style="width: 10%">Disaster Type</th>
+      <th style="width: 15%" colspan="3" class="table-bordered">Action</th>
+      <th style="width: 15%" colspan="2">Comment</th>
+      <th>Data Code</th>
+      <th>Users</th>
+    </tr>
   </thead>
   <% @posts.each do |post| %>
-  <tr>
-    <td><%= post.id %></td>
-    <td class="text-uppercase"><%= post.title %></td>
-    <td><%= post.content.truncate(50) %></td>
-    <td><%= post.address %></td>
-    <td><%= post.categories.pluck(:name).join(', ') %></td>
-    <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-warning" %></td>
-    <td><%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-danger" %></td>
-    <td><%= link_to 'Learn more', post_path(post), class: "btn btn-info" %></td>
-    <td><%= post.comments_count %> <span><%= image_tag ('hot.png'), width: "30", height: "30" if @hot_tag.include?(post)%></span></td>
-    <td><%= link_to "Comments", post_comments_path(post), class: "btn btn-success" %></td>
-    <td><%= post.unique_num %></td>
-    <td><%= post.user.email %></td>
-  </tr>
+    <tr>
+      <td><%= post.id %></td>
+      <td class="text-uppercase"><%= post.title %></td>
+      <td><%= post.content.truncate(50) %></td>
+      <td><%= post.address %></td>
+      <td><%= post.categories.pluck(:name).join(', ') %></td>
+      <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-warning" %></td>
+      <td><%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-danger" %></td>
+      <td><%= link_to 'Learn more', post_path(post), class: "btn btn-info" %></td>
+      <td><%= post.comments_count %>
+        <span><%= image_tag ('hot.png'), width: "30", height: "30" if @hot_tag.include?(post) %></span></td>
+      <td><%= link_to "Comments", post_comments_path(post), class: "btn btn-success" %></td>
+      <td><%= post.unique_num %></td>
+      <td><%= post.user.email %></td>
+    </tr>
   <% end %>
 </table>
 
 <%= paginate @posts, theme: 'twitter-bootstrap-4',
-    pagination_class: "pagination-sm",
-    nav_class: "d-inline-b" %>
+             pagination_class: "pagination-sm",
+             nav_class: "d-inline-b" %>
 
 
 

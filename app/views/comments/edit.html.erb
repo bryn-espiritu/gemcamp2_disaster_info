@@ -1,6 +1,5 @@
-<h1 class="alert alert-warning w-75"><span style="color: red">Disaster Info <%= @comment.id %>:</span> <%= @post.title %></h1>
-<h3></h3>
-
+<h1 class="alert alert-warning w-75">
+  <span style="color: red">Disaster Info <%= @comment.id %>:</span> <%= @post.title %></h1>
 <div class="container">
-<%= render partial: 'form', locals: {post: @post, comment: @comment, path: post_comment_path(@post, @comment)} %>
+  <%= render partial: 'form', locals: { post: @post, comment: @comment, path: post_comment_path(@post, @comment) } %>
 </div>

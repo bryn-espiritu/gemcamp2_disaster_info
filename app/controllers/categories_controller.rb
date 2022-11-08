@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def edit ;end
+  def edit; end
 
   def update
     if @category.update(params_category)
