@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_07_093012) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_08_054235) do
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -57,7 +57,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_093012) do
     t.datetime "delete_at"
     t.integer "comments_count", default: 0
     t.datetime "discarded_at"
-    t.string "unique_num"
     t.string "slug"
     t.index ["discarded_at"], name: "index_posts_on_discarded_at"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
