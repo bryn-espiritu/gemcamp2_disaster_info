@@ -92,6 +92,7 @@ GEM
     erubi (1.11.0)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
+    geocoder (1.8.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -217,6 +218,7 @@ DEPENDENCIES
   devise
   discard (~> 1.2)
   friendly_id (~> 5.4.0)
+  geocoder
   jbuilder
   jsbundling-rails
   kaminari
