@@ -3,17 +3,24 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :validate_post_user, only: [:edit, :update, :destroy]
 
+
     def index
       def index
         @posts = Post.includes(:user, :categories).order(comments_count: :desc).kept.page(params[:page]).per(5)
         @hot_tag = Post.order(comments_count: :desc).limit(3).select { |post| post.comments_count >= 1 }
+
       end
     end
 
     def new
       @post = Post.new
-
+      @random = sprintf'%04d', rand(-9999), unique: true
     end
+
+  def short_url
+    @post = Post.find_by(unique_num: params[:unique_num])
+    redirect_to post_path(@post)
+  end
 
     def create
       @post = Post.new(post_params)
@@ -25,16 +32,11 @@ class PostsController < ApplicationController
       end
     end
 
-    def edit
-      ;
-    end
+    def edit; end
 
-    def show
-      ;
-    end
+    def show; end
 
     def update
-      @post = Post.find(params[:id])
       if @post.update(post_params)
         redirect_to posts_path
       else
@@ -54,11 +56,11 @@ class PostsController < ApplicationController
     private
 
     def post_params
-      params.require(:post).permit(:title, :content, :address, category_ids: [])
+      params.require(:post).permit(:title, :content, :address, :unique_num, category_ids: [])
     end
 
     def set_post
-      @post = Post.friendly.find(params[:id])
+      @post = Post.find(params[:id])
     end
 
     def validate_post_user
