@@ -40,6 +40,8 @@ gem 'bootstrap4-kaminari-views'
 gem 'friendly_id', '~> 5.4.0'
 
 gem 'geocoder'
+
+gem 'rest-client'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
