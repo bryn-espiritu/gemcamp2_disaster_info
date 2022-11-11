@@ -15,7 +15,7 @@
       <th style="width: 15%" colspan="3" class="table-bordered">Action</th>
       <th style="width: 15%" colspan="2">Comment</th>
       <th colspan="2">Users</th>
-      <th>IP ADDRESS</th>
+      <th>Location</th>
     </tr>
   </thead>
   <% @posts.each do |post| %>
@@ -33,7 +33,7 @@
       <td><%= link_to "Comments", post_comments_path(post), class: "btn btn-success" %></td>
       <td><%= post.user.email %></td>
       <td><%= post.unique_num %></td>
-      <td><%= post.user.current_sign_in_ip %></td>
+      <td><%= Geocoder.search(post.ip_address).first.country %></td>
     </tr>
   <% end %>
 </table>
