@@ -1,9 +1,9 @@
-class Address::CityMunicipality < ApplicationRecord
+class Address::Barangay < ApplicationRecord
   validates :name, presence: true
   validates :code, uniqueness: true
 
   belongs_to :region
   belongs_to :district
   belongs_to :province
-  has_many :barangays
+  belongs_to :city_municipality
 end
