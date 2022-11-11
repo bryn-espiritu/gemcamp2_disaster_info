@@ -7,6 +7,7 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :post_category_ships
   has_many :categories, through: :post_category_ships
-  extend FriendlyId
-  friendly_id :title, use: :slugged
+  # extend FriendlyId
+  # # friendly_id :title, use: :slugged
+
 end
