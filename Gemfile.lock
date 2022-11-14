@@ -99,6 +99,8 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.11.0)
+    faker (3.0.0)
+      i18n (>= 1.8.11, < 2)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     geocoder (1.8.1)
@@ -243,6 +245,7 @@ DEPENDENCIES
   debug
   devise
   discard (~> 1.2)
+  faker
   friendly_id (~> 5.4.0)
   geocoder
   jbuilder
