@@ -11,5 +11,13 @@ Rails.application.routes.draw do
   resources :categories
 
   get "/:unique_num", to: "posts#short_url"
+
+  namespace :api do
+    resources :regions, only: :index, defaults: { format: :json }
+    resources :province, only: :index, defaults: { format: :json }
+    resources :district, only: :index, defaults: { format: :json }
+    resources :city_municipality, only: :index, defaults: { format: :json }
+    resources :barangay, only: :index, defaults: { format: :json }
+  end
   
 end
