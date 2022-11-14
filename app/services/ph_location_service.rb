@@ -49,16 +49,21 @@ class PhLocationService
       if city_municipality['provinceCode']
         province = Address::Province.find_by_code(city_municipality['provinceCode'])
         address_city_municipality.province = province
-      else
-        city_municipality['districtCode']
+      elsif city_municipality['districtCode']
         district = Address::District.find_by_code(city_municipality['districtCode'])
         address_city_municipality.district = district
+      else
+        if city_municipality['name'] == "City of Isabela"
+          province = Address::Province.find_by_name('Basilan')
+          Address::CityMunicipality.find_or_create_by(code: city_municipality['code'], name: city_municipality['name'], province: province)
+        elsif city_municipality['name'] == "City of Cotabato"
+          province = Address::Province.find_by_name('Maguindanao')
+          Address::CityMunicipality.find_or_create_by(code: city_municipality['code'], name: city_municipality['name'], province: province)
+        end
       end
       address_city_municipality.name = city_municipality['name']
       address_city_municipality.save
-
     end
-
   end
 
   def fetch_barangay
@@ -70,11 +75,12 @@ class PhLocationService
       province = Address::Province.find_by_code(brgy['provinceCode'])
       district = Address::District.find_by_code(brgy['districtCode'])
       if brgy['cityCode']
-      city = Address::CityMunicipality.find_by_code(brgy['cityCode'])
-      address_barangay.city = city
-      else brgy['municipalityCode']
-      municipality = Address::CityMunicipality.find_by_code(brgy['municipalityCode'])
-      address_barangay.municipality = municipality
+        city = Address::CityMunicipality.find_by_code(brgy['cityCode'])
+        address_barangay.city = city
+      else
+        brgy['municipalityCode']
+        municipality = Address::CityMunicipality.find_by_code(brgy['municipalityCode'])
+        address_barangay.municipality = municipality
       end
       address_barangay.region = region
       address_barangay.province = province
