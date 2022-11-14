@@ -8,6 +8,10 @@ class PostsController < ApplicationController
       def index
         @posts = Post.includes(:user, :categories).order(comments_count: :desc).kept.page(params[:page]).per(5)
         @hot_tag = Post.order(comments_count: :desc).limit(3).select { |post| post.comments_count >= 1 }
+        respond_to do |format|
+          format.html
+          format.json { render json: @posts, each_serializer: PostSerializer }
+        end
 
       end
     end
@@ -39,7 +43,14 @@ class PostsController < ApplicationController
 
     def edit; end
 
-    def show; end
+    def show
+
+      respond_to do |format|
+        format.html
+        format.json { render json: @post, serializer: PostSerializer }
+      end
+
+    end
 
     def update
       if @post.update(post_params)
