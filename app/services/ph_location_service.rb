@@ -1,4 +1,3 @@
-
 class PhLocationService
   attr_reader :url
 
@@ -46,14 +45,20 @@ class PhLocationService
     data.each do |city_municipality|
       address_city_municipality = Address::CityMunicipality.find_or_initialize_by(code: city_municipality['code'])
       region = Address::Region.find_or_initialize_by(code: city_municipality['regionCode'])
-      province = Address::Province.find_or_initialize_by(code: city_municipality['provinceCode'])
-      district = Address::District.find_or_initialize_by(code: city_municipality['districtCode'])
       address_city_municipality.region = region
-      address_city_municipality.province = province
-      address_city_municipality.district = district
+      if city_municipality['provinceCode']
+        province = Address::Province.find_by_code(city_municipality['provinceCode'])
+        address_city_municipality.province = province
+      else
+        city_municipality['districtCode']
+        district = Address::District.find_by_code(city_municipality['districtCode'])
+        address_city_municipality.district = district
+      end
       address_city_municipality.name = city_municipality['name']
       address_city_municipality.save
+
     end
+
   end
 
   def fetch_barangay
@@ -61,14 +66,19 @@ class PhLocationService
     data = JSON.parse(request.body)
     data.each do |brgy|
       address_barangay = Address::Barangay.find_or_initialize_by(code: brgy['code'])
-      region = Address::Region.find_or_initialize_by(code: brgy['regionCode'])
-      province = Address::Province.find_or_initialize_by(code: brgy['provinceCode'])
-      district = Address::District.find_or_initialize_by(code: brgy['districtCode'])
-      city_municipality = Address::CityMunicipality.find_or_initialize_by(code: brgy['city_municipalityCode'])
+      region = Address::Region.find_by_code(brgy['regionCode'])
+      province = Address::Province.find_by_code(brgy['provinceCode'])
+      district = Address::District.find_by_code(brgy['districtCode'])
+      if brgy['cityCode']
+      city = Address::CityMunicipality.find_by_code(brgy['cityCode'])
+      address_barangay.city = city
+      else brgy['municipalityCode']
+      municipality = Address::CityMunicipality.find_by_code(brgy['municipalityCode'])
+      address_barangay.municipality = municipality
+      end
       address_barangay.region = region
       address_barangay.province = province
       address_barangay.district = district
-      address_barangay.city_municipality = city_municipality
       address_barangay.name = brgy['name']
       address_barangay.save
 
