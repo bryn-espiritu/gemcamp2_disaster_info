@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :post_category_ships
   has_many :categories, through: :post_category_ships
+  mount_uploader   :image, ImageUploader
   # extend FriendlyId
   # # friendly_id :title, use: :slugged
 

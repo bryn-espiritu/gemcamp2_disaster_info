@@ -13,18 +13,26 @@
         <label for="exampleFormControlInput1" class="form-label">Title</label>
         <%= f.text_field :title, class: "form-control te", id: "exampleFormControlInput1" %>
       </div>
+
       <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Content</label>
         <%= f.text_area :content, class: "form-control", id: "exampleFormControlInput1", style: "height: 250px" %>
       </div>
+
       <div class="mb-3">
         <label for="exampleFormControlTextarea1" class="form-label">Address</label>
         <%= f.text_area :address, class: "form-control", id: "exampleFormControlInput1", style: "height: 50px" %>
       </div>
+
       <div class="text-center">
         <label for="name">Disaster Type: </label>
         <div class="m-2"><%= f.collection_check_boxes :category_ids, Category.all, :id, :name %> <%= link_to "[+]Other", categories_path, style: "text-decoration: none; color: blue" %></div>
-        <%#= f.collection_select :category_ids, Category.all, :id, :name, include_blank: true %>
+
+        <div class="text-center">
+          <label for="name">Add Image</label>
+          <div class="m-2"><%= f.file_field :image, class: "form-control" %></div>
+        </div>
+
         <div class="text-center pt-3 mb-3"><%= f.submit "Update", class: "btn btn-success" %></div>
       </div>
     </div>

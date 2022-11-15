@@ -2,6 +2,7 @@
   <span class="badge btn btn-primary">
   <%= link_to 'Create New', new_post_path, style: "text-decoration: none; color: white" %>
   </span>
+
 </h1>
 
 <table class="table text-center table-striped">
@@ -12,6 +13,7 @@
       <th>Content</th>
       <th>Address</th>
       <th style="width: 10%">Disaster Type</th>
+      <th>Image</th>
       <th style="width: 15%" colspan="3" class="table-bordered">Action</th>
       <th style="width: 15%" colspan="2">Comment</th>
       <th colspan="2">Users</th>
@@ -25,6 +27,7 @@
       <td><%= post.content.truncate(50) %></td>
       <td><%= post.address %></td>
       <td><%= post.categories.pluck(:name).join(', ') %></td>
+      <td><%= image_tag post.image.url, width: "90", height: "90", border: "2" if post.image? %></td>
       <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-warning" %></td>
       <td><%= button_to 'Delete', post_path(post), method: :delete, class: "btn btn-danger" %></td>
       <td><%= link_to 'Learn more', post_path(post), class: "btn btn-info" %></td>
