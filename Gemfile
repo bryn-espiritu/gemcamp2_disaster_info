@@ -44,6 +44,8 @@ gem 'geocoder'
 gem 'rest-client'
 
 gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'carrierwave', '~> 2.0'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
