@@ -1,3 +1,3 @@
 class ProvinceSerializer < ActiveModel::Serializer
-  attributes :name
+  attributes :id, :name, :code
 end
