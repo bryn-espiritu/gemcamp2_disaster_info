@@ -2,7 +2,9 @@
   <span class="badge btn btn-primary">
   <%= link_to 'Create New', new_post_path, style: "text-decoration: none; color: white" %>
   </span>
-
+  <span class="badge btn btn-info">
+   <%= link_to "Export CSV", posts_path(:format => :csv), style: "text-decoration: none; color: white" %>
+  </span>
 </h1>
 
 <table class="table text-center table-striped">
