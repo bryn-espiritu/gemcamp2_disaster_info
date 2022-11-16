@@ -1,7 +1,7 @@
 import {Controller} from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ["source"]
+    static targets = ["email"]
 
     copy() {
         let email = this.emailTarget.textContent
