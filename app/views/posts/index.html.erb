@@ -13,7 +13,7 @@
       <th>ID</th>
       <th>Title</th>
       <th>Content</th>
-      <th>Address</th>
+      <th colspan="2">Address</th>
       <th style="width: 10%">Disaster Type</th>
       <th>Image</th>
       <th style="width: 15%" colspan="3" class="table-bordered">Action</th>
@@ -28,6 +28,7 @@
       <td class="text-uppercase"><%= post.title %></td>
       <td><%= post.content.truncate(50) %></td>
       <td><%= post.address %></td>
+      <td><%= "#{post.region&.name}, #{post.province&.name}"%></td>
       <td><%= post.categories.pluck(:name).join(', ') %></td>
       <td><%= image_tag post.image.url, width: "90", height: "90", border: "2" if post.image? %></td>
       <td><%= link_to 'Edit', edit_post_path(post), class: "btn btn-warning" %></td>
@@ -36,10 +37,10 @@
       <td><%= post.comments_count %>
         <span><%= image_tag ('hot.png'), width: "30", height: "30" if @hot_tag.include?(post) %></span></td>
       <td><%= link_to "Comments", post_comments_path(post), class: "btn btn-success" %></td>
-      <td data-controller='clipboard'><span data-clipboard-target="email"><%= post.user.email %></span>
+      <td data-controller="clipboard" data-clipboard-target="email"><span ><%= post.user.email %></span>
         <button data-action="click->clipboard#copy">copy</button></td>
       <td><%= post.unique_num %></td>
-      <td><%= Geocoder.search(post.ip_address).first.country %></td>
+      <td><%= Geocoder.search(post.ip_address).first&.country %></td>
     </tr>
   <% end %>
 </table>
