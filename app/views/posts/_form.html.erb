@@ -5,7 +5,7 @@
     <% end %>
   <% end %>
 </div>
-<%= form_with model: @post do |f| %>
+<%= form_with model: @post, data: { controller: :location } do |f| %>
   <div class="container w-50">
     <div class="form-control bg-light">
       <h4 class="text-center">Please Enter the Following</h4>
@@ -23,6 +23,29 @@
         <label for="exampleFormControlTextarea1" class="form-label">Address</label>
         <%= f.text_area :address, class: "form-control", id: "exampleFormControlInput1", style: "height: 50px" %>
       </div>
+      <div>
+        <%= f.collection_select :address_region_id,
+                                   Address::Region.all, :id, :name,
+                                   { prompt: 'SELECT REGION' },
+                                   data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' } %>
+      </div>
+      <div>
+        <%= f.collection_select :address_province_id, [], nil, nil,
+                                { prompt: ' SELECT PROVINCE' },
+                                data: { location_target: 'selectProvinceId', action: 'change->location#fetchCityMunicipalities' }
+        %>
+      </div>
+      <div>
+        <%= f.collection_select :address_city_municipalities_id, [], nil, nil,
+                                { prompt: 'SELECT CITY' },
+                                data: { location_target: 'selectCityMunicipalityId', action: 'change->location#fetchBarangays' } %>
+      </div>
+      <div>
+        <%= f.collection_select :address_barangay_id, [], nil, nil,
+                                { prompt: 'SELECT BARANGAY' },
+                                data: { location_target: 'selectBarangayId' } %>
+      </div>
+
 
       <div class="text-center">
         <label for="name">Disaster Type: </label>
